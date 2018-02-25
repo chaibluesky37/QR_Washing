@@ -12,12 +12,12 @@ import Firebase from 'firebase';
 export default class App extends Component {
     componentWillMount() {
         Firebase.initializeApp({
-            apiKey: "xxx",
-            authDomain: "xxx",
-            databaseURL: "xxx",
-             projectId: "xxx",
-            storageBucket: "xxx",
-            messagingSenderId: "xxx"
+            apiKey: "xxxx",
+            authDomain: "xxxx",
+            databaseURL: "xxxx",
+             projectId: "xxxx",
+            storageBucket: "xxxx",
+            messagingSenderId: "xxxx"
         })
     }
     render() {
