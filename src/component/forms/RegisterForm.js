@@ -9,21 +9,18 @@ import {
 import Firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import Validator from 'validator';
-const usID =0;
-const csID =0;
-const cout = 0;
 export default class RegisterForm extends Component {
     constructor(props) {
         super(props);
         this.Users = Firebase.database().ref().child('TotalUs');
         this.state = {
-            emailReg : '',
-            passwordReg : '',
-            rePasswordReg : '',
-            nameReg : '',
-            telReg : '',
-            userID : usID,
-            CashID : csID,
+            emailReg : 'cccc@gmail.com',
+            passwordReg : '123456789',
+            rePasswordReg : '123456789',
+            nameReg : 'chaiwattest',
+            telReg : '0000000000',
+            userID : '',
+            CashID : '',
             TotalUs : 0,
             errorsReg : {
                 emailReg : '',
@@ -46,6 +43,7 @@ export default class RegisterForm extends Component {
         });
     }
     onSubmit() {
+        userId = Firebase.auth().currentUser.uid;
         usID = this.state.TotalUs;
         const { emailReg ,rePasswordReg } = this.state;
         //Register Firebase
@@ -54,7 +52,8 @@ export default class RegisterForm extends Component {
             .then(() => { 
                 this.setState({ errorsReg: '' }); 
                 //Write data Firebase
-                Firebase.database().ref('Customer/' + this.state.TotalUs).set({
+                Firebase.database().ref('Customer/' + userId).set({
+                    UserID : this.state.TotalUs,
                     CashID : this.state.TotalUs,
                     Name : this.state.nameReg,
                     Email : this.state.emailReg ,
@@ -66,6 +65,7 @@ export default class RegisterForm extends Component {
                 };
                 Firebase.database().ref().update(newus);
                 alert('You are registered');
+                // console.log("UID"+Firebase.auth().onAuthStateChanged(user));
                 // this.usID +=1;
                 // this.csID +=1;
                 Actions.pop();
