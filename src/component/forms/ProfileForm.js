@@ -11,10 +11,13 @@ import { Actions } from 'react-native-router-flux';
 class ProfileForm extends Component{
     constructor(props) {
         super(props);
-        this.name = Firebase.database().ref().child('TotalUs');
+        userId = Firebase.auth().currentUser.uid;
+        this.name = Firebase.database().ref().child('Customer/'+userId+'/Name');
+        this.email = Firebase.database().ref().child('Customer/'+userId+'/Email');
+        this.tel = Firebase.database().ref().child('Customer/'+userId+'/Tel');
         this.state = {
             email : '',
-            name : 10,
+            name : '',
             tel : '',
         };
         this.componentDidMount = this.componentDidMount.bind(this);
@@ -26,7 +29,21 @@ class ProfileForm extends Component{
     componentDidMount(){
         this.name.on('value',snap =>{
             this.setState({
-                name : snap.val() + 1
+                name : snap.val()
+                
+            });
+            // console.log(this.state.name);
+        });
+        this.email.on('value',snap =>{
+            this.setState({
+                email : snap.val()
+                
+            });
+        });
+        this.tel.on('value',snap =>{
+            this.setState({
+                tel : snap.val()
+                
             });
         });
     }
@@ -34,14 +51,14 @@ class ProfileForm extends Component{
         return(
             <View>
                 <Text>
-                    name {this.state.name}
+                    name : {this.state.name}
                 </Text>
                 
                 <Text>
-                    Email
+                    Email : {this.state.email}
                 </Text>
                 <Text>
-                    Tel
+                    Tel : {this.state.tel}
                 </Text>
             </View>
         );
