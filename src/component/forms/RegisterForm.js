@@ -43,7 +43,7 @@ export default class RegisterForm extends Component {
         });
     }
     onSubmit() {
-        userId = Firebase.auth().currentUser.uid;
+        
         usID = this.state.TotalUs;
         const { emailReg ,rePasswordReg } = this.state;
         //Register Firebase
@@ -52,6 +52,7 @@ export default class RegisterForm extends Component {
             .then(() => { 
                 this.setState({ errorsReg: '' }); 
                 //Write data Firebase
+                userId = Firebase.auth().currentUser.uid;
                 Firebase.database().ref('Customer/' + userId).set({
                     UserID : this.state.TotalUs,
                     CashID : this.state.TotalUs,

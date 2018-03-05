@@ -49,18 +49,35 @@ class ProfileForm extends Component{
     }
     render() {
         return(
-            <View>
-                <Text>
+            <View  style={styles.itemp}>
+                <Text style={styles.titlepf}> 
+                    Profile
+                </Text>
+                <Text style={styles.text}>
                     name : {this.state.name}
                 </Text>
                 
-                <Text>
+                <Text style={styles.text}>
                     Email : {this.state.email}
                 </Text>
-                <Text>
+                <Text style={styles.text}>
                     Tel : {this.state.tel}
                 </Text>
             </View>
         );
     }
 }export default ProfileForm
+const styles = StyleSheet.create({
+    text: {
+        fontSize : 20,
+        alignItems : 'center',
+    },
+    itemp : {
+        alignItems : 'center',
+        
+    },
+    titlepf : {
+        fontSize : 24,
+        
+    },
+});

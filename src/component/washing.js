@@ -15,6 +15,11 @@ class washing extends Component {
     cash(){
         Actions.cash();
     }
+    signOutUser(){
+        Firebase.auth().signOut();
+        Actions.pop();
+       
+    }
 
     render() {
         return(
@@ -43,19 +48,19 @@ class washing extends Component {
                 >
                      <Text style={styles.buttonText}>Pay</Text>  
                 </TouchableOpacity>
+    {/* Cash*/}    
+                  <TouchableOpacity
+                    style = {styles.button}
+                    onPress={this.signOutUser}
+                >
+                     <Text style={styles.buttonText}>Logout</Text>  
+                </TouchableOpacity>
             </View>
             
         );
     }
 
-    //Write data Firebase
-    writeUserData({user_ID,user_name,locker_status}) {
-        Firebase.database().ref('UserID/' + user_ID).set({
-             UserName : user_name ,
-             LockerStatus : locker_status
-        });
-        alert('Success Written Firebase');
-    }
+
 
 } export default washing
 
